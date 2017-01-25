@@ -1,16 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of Table
- *
- * @author pp
- */
 class Table {
 
     private $numberOfRows;
@@ -34,18 +24,6 @@ class Table {
 
     public function getValues() {
         return $this->values;
-    }
-
-    function setNumberOfRows($numberOfRows) {
-        $this->numberOfRows = $numberOfRows;
-    }
-
-    function setNumberOfColumns($numberOfColumns) {
-        $this->numberOfColumns = $numberOfColumns;
-    }
-
-    function setValues($values) {
-        $this->values = $values;
     }
 
     public function printValuesWithSnail() {
@@ -96,13 +74,26 @@ class Table {
             $this->values[] = $array;
         }
     }
+    public function addValues($arrayWithValues){
+        $index = 0;
+        for ($i = 0; $i < $this->numberOfRows; $i++) {
+            $array = [];
+            for ($j = 0; $j < $this->numberOfColumns; $j++) {
+                
+                $array[] = $arrayWithValues[$index];
+                $index++;
+            }
+            $this->values[] = $array;
+        }
+    }
 
-    private function randomString($length) {
+    public function randomString($length) {
         $original_string = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
         $original_string2 = implode("", $original_string);
         return substr(str_shuffle($original_string2), 0, $length);
     }
 
 }
+
 
 
